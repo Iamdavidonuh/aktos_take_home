@@ -2,7 +2,8 @@ from rest_framework import routers
 
 from collector import viewsets
 
-app_name = "collector"
+app_name = "collector"  # pylint: disable=invalid-name
+
 
 router = routers.DefaultRouter()
 
