@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "aktos-take-home"
+version = "0.1.0"
+description = "A take home assignment by Aktos"
+authors = ["David Onuh <davidonuh1@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.2"
+djangorestframework = "^3.14.0"
+django-filter = "^23.5"
+drf-spectacular = "^0.27.0"
+gunicorn = "^21.2.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "23.12.1"
+isort = "5.12.0"
+pylint = "2.17.5"
+flake8 = "6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
