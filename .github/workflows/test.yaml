@@ -1,0 +1,36 @@
+name: Aktos API tests
+
+on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+
+
+jobs:
+
+    tests:
+        runs-on: ubuntu-latest
+        # services:
+        
+        steps:
+        - uses: actions/checkout@v3
+        - name: Setup python 3.11
+          uses: actions/setup-python@v3
+          with:
+            python-version: "3.11"
+        - name: Run image
+          uses: abatilo/actions-poetry@v2
+          with:
+            poetry-version: "1.7.0"
+        - name: View poetry --help
+          run: poetry --help
+        - name: Install dependencies with poetry
+          run: poetry install --no-root
+        - name: Test with manage.py test
+          run: |
+            poetry run python manage.py test 
+  
+            
