@@ -5,9 +5,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomerBalanceChoices(models.TextChoices):
-    INACTIVE = "INACTIVE", _("INACTIVE")
-    PAID_IN_FULL = "PAID_IN_FULL", _("PAID IN FULL")
-    IN_COLLECTION = "IN_COLLECTION", _("IN COLLECTION")
+    INACTIVE = "inactive", _("INACTIVE")
+    PAID_IN_FULL = "paid_in_full", _("PAID IN FULL")
+    IN_COLLECTION = "in_collection", _("IN COLLECTION")
 
 
 class CustomerBalance(models.Model):

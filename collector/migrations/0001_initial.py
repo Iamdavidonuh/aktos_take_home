@@ -32,11 +32,11 @@ class Migration(migrations.Migration):
                     "status",
                     models.CharField(
                         choices=[
-                            ("INACTIVE", "INACTIVE"),
-                            ("PAID_IN_FULL", "PAID IN FULL"),
-                            ("IN_COLLECTION", "IN COLLECTION"),
+                            ("inactive", "INACTIVE"),
+                            ("paid_in_full", "PAID IN FULL"),
+                            ("in_collection", "IN COLLECTION"),
                         ],
-                        default="INACTIVE",
+                        default="inactive",
                         max_length=25,
                     ),
                 ),
