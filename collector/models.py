@@ -5,14 +5,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomerBalanceChoices(models.TextChoices):
-
     INACTIVE = "INACTIVE", _("INACTIVE")
     PAID_IN_FULL = "PAID_IN_FULL", _("PAID IN FULL")
     IN_COLLECTION = "IN_COLLECTION", _("IN COLLECTION")
 
 
 class CustomerBalance(models.Model):
-
     client_ref_no = models.UUIDField(
         verbose_name="Client reference number", unique=True
     )
@@ -26,7 +24,9 @@ class CustomerBalance(models.Model):
     consumer_address = models.TextField()
     ssn = models.CharField(max_length=20)
 
-    class Meta:
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
         verbose_name = "Customer Balance"
         verbose_name_plural = "Customer Balances"

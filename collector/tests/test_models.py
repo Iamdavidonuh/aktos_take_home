@@ -1,13 +1,13 @@
-from django.test import TestCase
-from collector import models
 import uuid
 
+from django.test import TestCase
+
+from collector import models
 
 # Create your tests here.
 
 
 class TestCustomerBalanceModel(TestCase):
-
     def test_customer_balance_creation_succeeds(self):
         payload = dict(
             client_ref_no=uuid.uuid4(),
@@ -23,7 +23,6 @@ class TestCustomerBalanceModel(TestCase):
         self.assertEqual(created, db_data)
 
     def test_customer_balance_default_value_for_status(self):
-
         payload = dict(
             client_ref_no=uuid.uuid4(),
             balance=6000.08,
