@@ -1,6 +1,10 @@
 # aktos_take_home
 A take home assignment by Aktos
 
+Video walkthrough.
+ - [PART ONE](https://www.loom.com/share/5c7b96dcdc3b4f12a3315f5ad1657307?sid=2b3d0ab6-23cf-4b37-ab75-3a5de38b9fa3)
+  - [PART TWO](https://www.loom.com/share/9fe1f336acdd4995937e2b97aa0e5626?sid=ee875e5a-2cfc-4d91-9600-e75b63511d61)
+
 
 [![Aktos API Pylint](https://github.com/Iamdavidonuh/aktos_take_home/actions/workflows/pylint.yaml/badge.svg)](https://github.com/Iamdavidonuh/aktos_take_home/actions/workflows/pylint.yaml)
 [![Aktos API tests](https://github.com/Iamdavidonuh/aktos_take_home/actions/workflows/test.yaml/badge.svg)](https://github.com/Iamdavidonuh/aktos_take_home/actions/workflows/test.yaml)
