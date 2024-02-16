@@ -60,7 +60,7 @@ class TestConsumerViewsets(TestBase):
         response = self.client.get(get_consumers_endpoint)
         consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
-        self.assertTrue(len(response.json()) == consumers.count())
+        self.assertTrue(len(response.json()["results"]) == consumers.count())
 
     def test_get_consumers_query_by_min_max_balances(self):
         expected_response_length = 3
@@ -69,18 +69,18 @@ class TestConsumerViewsets(TestBase):
         )
         response = self.client.get(query_endpoint)
         self.assertTrue(response.status_code == status.HTTP_200_OK)
-        self.assertTrue(len(response.json()) == expected_response_length)
+        self.assertTrue(len(response.json()["results"]) == expected_response_length)
 
     def test_get_consumers_query_by_consumer_name_uses_icontains_lookup(self):
         query_endpoint = f'{reverse("collector:consumers-list")}?consumer_name=test'
         response = self.client.get(query_endpoint)
         consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
-        self.assertTrue(len(response.json()) == consumers.count())
+        self.assertTrue(len(response.json()["results"]) == consumers.count())
 
     def test_get_consumers_query_by_status_works(self):
         query_endpoint = f'{reverse("collector:consumers-list")}?status=in_collection'
         response = self.client.get(query_endpoint)
         consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
-        self.assertTrue(len(response.json()) == consumers.count())
+        self.assertTrue(len(response.json()["results"]) == consumers.count())
