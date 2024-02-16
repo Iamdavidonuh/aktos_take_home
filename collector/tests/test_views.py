@@ -13,7 +13,7 @@ class TestBase(APITestCase):
     @staticmethod
     def create_customer_balance(
         name: str, ssn: str, balance: float
-    ) -> models.CustomerBalance:
+    ) -> models.ConsumerBalance:
         """creates a simple customer balance object
 
         Args:
@@ -22,12 +22,12 @@ class TestBase(APITestCase):
             balance (float): amount of money
 
         Returns:
-            models.CustomerBalance: customer balance object
+            models.ConsumerBalance: customer balance object
         """
-        customer = models.CustomerBalance.objects.create(
+        customer = models.ConsumerBalance.objects.create(
             client_ref_no=uuid.uuid4(),
             balance=balance,
-            status=models.CustomerBalanceChoices.IN_COLLECTION,
+            status=models.ConsumerBalanceChoices.IN_COLLECTION,
             consumer_name=name,
             ssn=ssn,
             consumer_address="123 Test Address",
@@ -35,7 +35,7 @@ class TestBase(APITestCase):
         return customer
 
     def create_multiple_customer_balance(self, max_number):
-        """Creates n-1 amount of customerbalance objects
+        """Creates n-1 amount of ConsumerBalance objects
 
         Args:
             max_number (int): total amount of objects to create
@@ -58,7 +58,7 @@ class TestConsumerViewsets(TestBase):
     def test_get_consumers_success(self):
         get_consumers_endpoint = reverse("collector:consumers-list")
         response = self.client.get(get_consumers_endpoint)
-        consumers = models.CustomerBalance.objects.all()
+        consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
         self.assertTrue(len(response.json()) == consumers.count())
 
@@ -74,13 +74,13 @@ class TestConsumerViewsets(TestBase):
     def test_get_consumers_query_by_consumer_name_uses_icontains_lookup(self):
         query_endpoint = f'{reverse("collector:consumers-list")}?consumer_name=test'
         response = self.client.get(query_endpoint)
-        consumers = models.CustomerBalance.objects.all()
+        consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
         self.assertTrue(len(response.json()) == consumers.count())
 
     def test_get_consumers_query_by_status_works(self):
         query_endpoint = f'{reverse("collector:consumers-list")}?status=in_collection'
         response = self.client.get(query_endpoint)
-        consumers = models.CustomerBalance.objects.all()
+        consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
         self.assertTrue(len(response.json()) == consumers.count())

@@ -5,5 +5,5 @@ from collector import models
 
 class ConsumerBalanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.CustomerBalance
+        model = models.ConsumerBalance
         fields = "__all__"

@@ -5,7 +5,7 @@ from collector import filter_backend, models, serializers
 
 
 class ConsumersViewset(viewsets.ReadOnlyModelViewSet):
-    queryset = models.CustomerBalance.objects.all()
+    queryset = models.ConsumerBalance.objects.all()
     serializer_class = serializers.ConsumerBalanceSerializer
 
     filter_backends = [djrf_filters.DjangoFilterBackend]

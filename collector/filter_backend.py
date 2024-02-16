@@ -9,5 +9,5 @@ class ConsumerBalanceFilter(filters.FilterSet):
     max_balance = filters.NumberFilter(field_name="balance", lookup_expr="lte")
 
     class Meta:
-        model = models.CustomerBalance
+        model = models.ConsumerBalance
         fields = ["status"]

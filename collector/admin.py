@@ -4,4 +4,4 @@ from collector import models
 
 # Register your models here.
 
-admin.site.register(models.CustomerBalance)
+admin.site.register(models.ConsumerBalance)

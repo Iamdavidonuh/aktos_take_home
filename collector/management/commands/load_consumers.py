@@ -40,11 +40,11 @@ class Command(BaseCommand):
             ssn = row["ssn"]
             balance = row["balance"]
 
-            if not models.CustomerBalance.objects.filter(
+            if not models.ConsumerBalance.objects.filter(
                 client_ref_no=client_ref_no
             ).exists():
                 # customer_object_list.append(
-                models.CustomerBalance(
+                models.ConsumerBalance(
                     client_ref_no=client_ref_no,
                     status=status,
                     consumer_name=consumer_name,
@@ -53,5 +53,5 @@ class Command(BaseCommand):
                     balance=balance,
                 ).save()
             # )
-        models.CustomerBalance.objects.bulk_create(customer_object_list)
+        models.ConsumerBalance.objects.bulk_create(customer_object_list)
         self.stdout.write(self.style.SUCCESS("Successfully Saved Data from csv file"))
