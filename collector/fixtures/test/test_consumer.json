@@ -1,0 +1,44 @@
+[
+    {
+        "model": "collector.consumerbalance",
+        "pk": 1,
+        "fields": {
+            "client_ref_no": "ffeb5d88-e5af-45f0-9637-16ea469c58c0",
+            "balance": "59638.99",
+            "status": "inactive",
+            "consumer_name": "Jessica Williams",
+            "consumer_address": "0233 Edwards Glens\nAllisonhaven, HI 91491",
+            "ssn": "018-79-4253",
+            "date_created": "2024-02-16T00:51:38.084Z",
+            "date_updated": "2024-02-16T00:51:38.084Z"
+        }
+    },
+    {
+        "model": "collector.consumerbalance",
+        "pk": 2,
+        "fields": {
+            "client_ref_no": "6155ee11-6eb5-4005-abc7-df2fe6c099ea",
+            "balance": "59464.79",
+            "status": "paid_in_full",
+            "consumer_name": "Christopher Harrison",
+            "consumer_address": "6791 Chang Mountain\nPort Jamiehaven, UT 24171",
+            "ssn": "511-96-5364",
+            "date_created": "2024-02-16T00:51:38.085Z",
+            "date_updated": "2024-02-16T00:51:38.085Z"
+        }
+    },
+    {
+        "model": "collector.consumerbalance",
+        "pk": 3,
+        "fields": {
+            "client_ref_no": "d984a3b4-d331-4857-8e6f-b44bad2567aa",
+            "balance": "48598.63",
+            "status": "in_collection",
+            "consumer_name": "Peter Nichols",
+            "consumer_address": "USNS Smith\nFPO AP 59558",
+            "ssn": "648-08-4523",
+            "date_created": "2024-02-16T00:51:38.086Z",
+            "date_updated": "2024-02-16T00:51:38.086Z"
+        }
+    }
+]
