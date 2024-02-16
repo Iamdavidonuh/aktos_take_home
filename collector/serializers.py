@@ -16,10 +16,10 @@ class ConsumerCSVUploadSerializer(serializers.Serializer):
     file = serializers.FileField()
 
     def create(self, validated_data):
-        csv_file = validated_data["file"]
-        csv_data = TextIOWrapper(csv_file, encoding="utf-8")
-        objs = utils.save_consumer_balance_from_csv(csv_file_or_path=csv_data)
-        return objs
+        csv_data = TextIOWrapper(validated_data["file"], encoding="utf-8")
+        csv_hander = utils.CSVConsumerHandler()
+        csv_hander.save_consumer_balance_from_csv(csv_file_or_path=csv_data)
+        return True
 
     def to_representation(self, instance):
         return {}

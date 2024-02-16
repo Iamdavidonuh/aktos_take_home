@@ -23,7 +23,8 @@ class Command(BaseCommand):
             raise CommandError(f"Invalid path: {csv_path} File does not exist")
 
         try:
-            utils.save_consumer_balance_from_csv(csv_path)
+            csv_hander = utils.CSVConsumerHandler()
+            csv_hander.save_consumer_balance_from_csv(csv_path)
         except utils.BadHeadersException as err:
             raise CommandError(f"Error Saving csv file: {err}")
 
