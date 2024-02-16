@@ -1,0 +1,25 @@
+services:
+  web:
+      build: .
+      restart: on-failure
+      command: gunicorn aktos.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --workers 3
+      volumes:
+        - static_volume:/app/web/staticfiles
+        - media_volume:/app/web/mediafiles
+      env_file:
+        - .env
+
+  
+  nginx:
+    build: ./deployments/nginx
+    volumes:
+      - static_volume:/app/web/staticfiles
+      - media_volume:/app/web/mediafiles
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
+  media_volume:
