@@ -4,8 +4,8 @@ services:
       restart: on-failure
       command: gunicorn aktos.wsgi:application --bind 0.0.0.0:8000 --access-logfile - --workers 3
       volumes:
-        - static_volume:/app/web/staticfiles
-        - media_volume:/app/web/mediafiles
+        - static_volume:/app/web/static
+        - media_volume:/app/web/media
       env_file:
         - .env
 
@@ -13,8 +13,8 @@ services:
   nginx:
     build: ./deployments/nginx
     volumes:
-      - static_volume:/app/web/staticfiles
-      - media_volume:/app/web/mediafiles
+      - static_volume:/app/web/static
+      - media_volume:/app/web/media
     ports:
       - 80:80
     depends_on:
