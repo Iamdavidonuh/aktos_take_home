@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aktos.settings")
+settings_path = os.environ.get(
+    "DJANGO_SETTINGS_MODULE", "aktos.settings.local_settings"
+)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_path)
+
 
 application = get_wsgi_application()
