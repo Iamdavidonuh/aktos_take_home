@@ -113,7 +113,9 @@ Loading csv data into the database can be down via two methods, django commands 
 
 ## API Endpoint
 - Swagger docs can be found at: `127.0.0.1:8000/docs/swagger`
-- Deployed at: http://34.125.127.214/docs/swagger
+- Deployed at: http://34.125.127.214/docs/swagger 
+    
+    Note: The database on prod is clean, you'd have to upload csv via the `upload-consumers` endpoint to get data
 
 ## Notes
 
