@@ -26,7 +26,7 @@ test_docker: ## Run Django tests via Docker
 
 install: ## Install poetry packages
 	@echo "\n=== Installing packages ================================="
-	@poetry install
+	@poetry install --no-root
 
 
 up: ## Startup docker containers
@@ -37,11 +37,11 @@ down: ## Stop docker containers
 	@echo "\n=== Running Docker compose Down =================================="
 	@docker compose down
 
-logs: ## Stop docker containers
+logs: ## Show docker logs
 	@echo "\n=== Running Docker compose logs =================================="
 	@docker compose logs
 
-prod_down: ## Stop docker containers
+prod_down: ## Stop docker containers with prod settings
 	@echo "\n=== Running Docker compose Down PROD =================================="
 	@docker compose -f compose-prod.yml down
 
@@ -49,7 +49,7 @@ prod: ## Run docker containers with prod settings
 	@echo "\n=== Running Docker compose Up for Prod =================================="
 	@docker compose -f docker-compose.yml -f compose-prod.yml up  --detach --build  --force-recreate
 
-prod_logs: ## Stop docker containers
+prod_logs: ## Show docker logs with prod settings
 	@echo "\n=== Running Docker compose Logs Prod =================================="
 	@docker compose -f compose-prod.yml logs -f
 
