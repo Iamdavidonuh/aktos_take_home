@@ -30,3 +30,6 @@ class CustomerBalance(models.Model):
     class Meta:
         verbose_name = "Customer Balance"
         verbose_name_plural = "Customer Balances"
+
+    def __str__(self) -> str:
+        return f"Customer Balance for {self.consumer_name}"

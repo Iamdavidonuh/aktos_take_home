@@ -144,3 +144,15 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+
+# CSV PARSING
+
+EXPECTED_CSV_HEADERS = [
+    "client reference no",
+    "balance",
+    "status",
+    "consumer name",
+    "consumer address",
+    "ssn",
+]
