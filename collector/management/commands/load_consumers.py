@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.conf import settings
-from collector import models
 import os
-import pandas as pd
+
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
+
+from collector import utils
 
 
 class Command(BaseCommand):
@@ -21,37 +22,9 @@ class Command(BaseCommand):
         if not os.path.isfile(csv_path):
             raise CommandError(f"Invalid path: {csv_path} File does not exist")
 
-        df = pd.read_csv(csv_path)
-        # Convert column names to lowercase
-        df.columns = df.columns.str.lower()
+        try:
+            utils.save_consumer_balance_from_csv(csv_path)
+        except utils.BadHeadersException as err:
+            raise CommandError(f"Error Saving csv file: {err}")
 
-        if not self.verify_headers(df.columns.tolist()):
-            raise CommandError(
-                f"Bad Header Format, CSV should have the following in no order: {settings.EXPECTED_CSV_HEADERS}"
-            )
-
-        customer_object_list = []
-
-        for _, row in df.iterrows():
-            client_ref_no = row["client reference no"]
-            status = str(row["status"]).lower()
-            consumer_name = row["consumer name"]
-            consumer_address = row["consumer address"]
-            ssn = row["ssn"]
-            balance = row["balance"]
-
-            if not models.ConsumerBalance.objects.filter(
-                client_ref_no=client_ref_no
-            ).exists():
-                # customer_object_list.append(
-                models.ConsumerBalance(
-                    client_ref_no=client_ref_no,
-                    status=status,
-                    consumer_name=consumer_name,
-                    consumer_address=consumer_address,
-                    ssn=ssn,
-                    balance=balance,
-                ).save()
-            # )
-        models.ConsumerBalance.objects.bulk_create(customer_object_list)
         self.stdout.write(self.style.SUCCESS("Successfully Saved Data from csv file"))

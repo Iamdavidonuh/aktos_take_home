@@ -1,5 +1,7 @@
 import uuid
 
+from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -84,3 +86,30 @@ class TestConsumerViewsets(TestBase):
         consumers = models.ConsumerBalance.objects.all()
         self.assertTrue(response.status_code == status.HTTP_200_OK)
         self.assertTrue(len(response.json()["results"]) == consumers.count())
+
+
+class TestCSVUPloadView(APITestCase):
+    def setUp(self) -> None:
+        super().setUp()
+        self.test_fixtures_path = settings.BASE_DIR / "collector" / "fixtures" / "test"
+
+    def test_csv_upload_succeeds(self):
+        upload_csv_url = reverse("collector:upload-consumers-list")
+
+        upload_success_msg = "Records created successfully"
+
+        test_csv_path = self.test_fixtures_path / "test_balances.csv"
+
+        with open(test_csv_path, "rb") as csv_file:
+            uploaded_file = SimpleUploadedFile(
+                csv_file.name, csv_file.read(), content_type="text/csv"
+            )
+            response = self.client.post(
+                upload_csv_url, {"file": uploaded_file}, format="multipart"
+            )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["message"], upload_success_msg)
+
+        # count db items, should be total csv items(3)
+        self.assertTrue(models.ConsumerBalance.objects.count(), 3)

@@ -10,6 +10,12 @@ router = routers.DefaultRouter()
 
 router.register("consumers", viewsets.ConsumersViewset, basename="consumers")
 
+router.register(
+    "upload-consumers",
+    viewsets.ConsumerBalanceCSVUploadViewset,
+    basename="upload-consumers",
+)
+
 
 urlpatterns = []
 
